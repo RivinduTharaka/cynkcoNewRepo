@@ -14,7 +14,7 @@ const textColor = '#E0E0E0'; // Light gray for text
 const FooterContainer = styled(Box)({
   backgroundColor: '#0b1533', // Dark blue background matching the image
   color: textColor,
-  padding: '4rem 0',
+  padding: '2rem 0',
   mt: 'auto', // Pushes the footer to the bottom
 });
 
@@ -77,9 +77,9 @@ const Footer = () => {
               <FooterLink to="/">Home</FooterLink>
               <FooterLink to="/about">Products</FooterLink>
               <FooterLink to="/services">Support</FooterLink>
-              <FooterLink to="/contact">Partner</FooterLink>
-              <FooterLink to="/careers">Contact Us</FooterLink>
-              <FooterLink to="/blog">Blog</FooterLink>
+              {/* <FooterLink to="/contact"></FooterLink> */}
+              <FooterLink to="/contact">Contact Us</FooterLink>
+              {/* <FooterLink to="/blog">Blog</FooterLink> */}
             </Box>
           </Grid>
 
@@ -90,12 +90,12 @@ const Footer = () => {
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'left' }}>
               <FooterLink to="/service01">CYNKCO VISION</FooterLink>
-              <FooterLink to="/service02">CYNKCO CLASSMATE</FooterLink>
+              {/* <FooterLink to="/service02">CYNKCO CLASSMATE</FooterLink>
               <FooterLink to="/service03">CYNKCO MEET</FooterLink>
               <FooterLink to="/service04">CYNKCO ACCESS</FooterLink>
               <FooterLink to="/service05">CYNKCO ALERTS</FooterLink>
               <FooterLink to="/service05">CYNKCO COMPUTE</FooterLink>
-              <FooterLink to="/service06">CYNKCO STORE</FooterLink>
+              <FooterLink to="/service06">CYNKCO STORE</FooterLink> */}
             </Box>
           </Grid>
 
@@ -136,15 +136,16 @@ const Footer = () => {
         </Grid>
 
         {/* Divider */}
-        <Divider sx={{ my: 4, borderColor: 'rgba(255, 255, 255, 0.2)' }} />
+        <Divider sx={{ my: 2, borderColor: 'rgba(255, 255, 255, 0.2)' }} />
 
-        {/* Copyright Notice */}
+        
+      </Container>
+      {/* Copyright Notice */}
         <Box textAlign="center">
           <Typography variant="body2">
             © {new Date().getFullYear()} Connex Codeworks (Pvt) Ltd. All Rights Reserved.
           </Typography>
         </Box>
-      </Container>
     </FooterContainer>
   );
 };

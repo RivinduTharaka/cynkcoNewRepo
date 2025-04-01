@@ -11,70 +11,78 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 
+// Function to generate a slug from the product name
+const generateSlug = (name) => {
+  return name
+    .toLowerCase()
+    .replace(/\s+/g, "-") // Replace spaces with hyphens
+    .replace(/[^a-z0-9-]/g, ""); // Remove special characters
+};
+
 function ProductsSec2() {
   const products = [
     {
+      recordId: "P001",
       name: "CYNKCO VISION",
       category: "Surveillance",
       description:
         "Advanced surveillance system with 4K resolution, night vision, and real-time monitoring.",
       image:
-        "https://www.securitysales.com/wp-content/uploads/2020/03/surveillance-cameras.jpg",
-      link: "/Smart-Screen-Specs",
+        "https://safeguardsystems.co.uk/wp-content/uploads/2023/03/how-many-cctv-cameras-do-i-need-to-protect-my-business.jpg",
     },
     {
+      recordId: "P002",
       name: "CYNKCO CLASSMATE",
       category: "SmartBoard",
       description:
         "Interactive SmartBoard with Android/Windows Dual OS, multi-touch, and collaboration tools.",
       image:
         "https://vibe.us/blog/advantages-of-interactive-whiteboard/cover_huffa80fae682c771c1add650d0333d320_3937042_1680x0_resize_q90_h2_lanczos_3.9c0e9bee5c0988b98912b635dc7f1e25bb7049e1a13ea701993a695b94a4fb22.webp",
-      link: "/Smart-Screen-Specs",
     },
     {
+      recordId: "P003",
       name: "CYNKCO MEET",
       category: "SmartMeet",
       description:
         "SmartMeet solution for video conferencing with 4K display and seamless integration.",
       image:
-        "https://www.viewsonic.com/library/wp-content/uploads/2023/03/Benefits-of-using-touchscreen-for-hybrid-meetings.jpg",
-      link: "/meet-specs",
+        "https://www.dictation.philips.com/fileadmin/_processed_/7/4/csm_philips-smartmeeting_pse0550_1333390966_e7ec442026.jpg",
     },
     {
+      recordId: "P004",
       name: "CYNKCO ACCESS",
       category: "Access Control and Attendance",
       description:
         "Secure access control and attendance system with biometric and RFID support.",
       image:
-        "https://www.zkteco.com/upload/image/202209/1663660800_access_control.jpg",
-      link: "/access-specs",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNMz4Mahyh5ZMImH5o1CKB_Gi4xYwATh7rzyIBRYwM-QqOA53tpjvLlq2WmHXnOqO0GCk&usqp=CAU",
     },
     {
+      recordId: "P005",
       name: "CYNKCO ALERTS",
       category: "Alarm Systems",
       description:
         "Intelligent alarm systems with real-time alerts and customizable triggers.",
       image:
         "https://www.securityinfowatch.com/wp-content/uploads/2021/05/alarm-system.jpg",
-      link: "/alerts-specs",
     },
     {
+      recordId: "P006",
       name: "CYNKCO COMPUTE",
       category: "Notebook, Desktops, Workstations and Servers",
       description:
         "High-performance computing solutions for all your business needs.",
       image:
         "https://www.hp.com/us-en/shop/app/assets/images/uploads/prod/business-desktop-computers1597358681471538.jpg",
-      link: "/compute-specs",
     },
     {
+      recordId: "P007",
       name: "CYNKCO STORE",
       category: "Data Storages",
       description:
         "Reliable data storage solutions with high capacity and fast access speeds.",
       image:
         "https://www.seagate.com/content/dam/seagate/migrated-assets/www-content/solutions/enterprise-storage/_shared/images/enterprise-storage-hero.jpg",
-      link: "/store-specs",
     },
   ];
 
@@ -94,24 +102,28 @@ function ProductsSec2() {
           Product Categories
         </Typography>
 
-        <Grid container spacing={{ xs: 2, sm: 3, md: 4 }} justifyContent="center">
-          {products.map((product, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
+        <Grid
+          container
+          spacing={{ xs: 2, sm: 3, md: 4 }}
+          justifyContent="center"
+        >
+          {products.map((product) => (
+            <Grid item xs={12} sm={6} md={4} key={product.recordId}>
               <Card
                 component={Link}
-                to={product.link}
+                to={`/products/${generateSlug(product.name)}?pid=${product.recordId}`} // Pass pid as query param
                 sx={{
                   textDecoration: "none",
-                  height: { xs: 360, sm: 380, md: 400 }, // Adjusted height for mobile
-                  maxWidth: { xs: "100%", sm: 350 }, // Full width on mobile, capped on larger screens
+                  height: { xs: 360, sm: 380, md: 400 },
+                  maxWidth: { xs: "100%", sm: 350 },
                   mx: "auto",
                   borderRadius: 3,
                   display: "flex",
                   flexDirection: "column",
                   transition: "transform 0.3s, box-shadow 0.3s",
                   "&:hover": {
-                    transform: { xs: "none", sm: "translateY(-6px)" }, // Disable hover effect on mobile
-                    boxShadow: { xs: 0, sm: 6 }, // No shadow on mobile hover
+                    transform: { xs: "none", sm: "translateY(-6px)" },
+                    boxShadow: { xs: 0, sm: 6 },
                   },
                 }}
               >
@@ -120,7 +132,7 @@ function ProductsSec2() {
                   image={product.image}
                   alt={`${product.name} ${product.category}`}
                   sx={{
-                    height: { xs: 180, sm: 190, md: 200 }, // Scaled image height
+                    height: { xs: 180, sm: 190, md: 200 },
                     objectFit: "cover",
                   }}
                   onError={(e) => {
@@ -133,7 +145,7 @@ function ProductsSec2() {
                   sx={{
                     flexGrow: 1,
                     textAlign: "center",
-                    px: { xs: 2, md: 3 }, // Adjusted padding
+                    px: { xs: 2, md: 3 },
                     py: { xs: 1.5, md: 2 },
                   }}
                 >
@@ -143,7 +155,7 @@ function ProductsSec2() {
                       fontWeight: "bold",
                       mb: 1,
                       color: "text.primary",
-                      fontSize: { xs: "1.125rem", sm: "1.25rem" }, // Scaled font size
+                      fontSize: { xs: "1.125rem", sm: "1.25rem" },
                     }}
                   >
                     {product.name}
@@ -153,8 +165,8 @@ function ProductsSec2() {
                     sx={{
                       color: "text.secondary",
                       mb: { xs: 1.5, md: 2 },
-                      fontSize: { xs: "0.875rem", sm: "0.9375rem" }, // Scaled font size
-                      lineHeight: 1.4, // Tighter line height for readability
+                      fontSize: { xs: "0.875rem", sm: "0.9375rem" },
+                      lineHeight: 1.4,
                     }}
                   >
                     {product.description}
@@ -164,7 +176,7 @@ function ProductsSec2() {
                     variant="outlined"
                     sx={{
                       px: { xs: 2, sm: 3 },
-                      fontSize: { xs: "0.75rem", sm: "0.875rem" }, // Scaled button text
+                      fontSize: { xs: "0.75rem", sm: "0.875rem" },
                       borderRadius: "999px",
                       textTransform: "none",
                       color: "#2596BE",

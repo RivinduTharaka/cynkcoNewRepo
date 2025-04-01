@@ -58,14 +58,18 @@ function Products() {
   return (
     <Box sx={{ py: 6 }}>
       <Container>
-        {/* Section Title */}
         <Typography
-          variant="h4"
+          variant="h2"
           sx={{
+            fontWeight: "semibold",
+            mb: 5,
             textAlign: "center",
-            fontWeight: "bold",
-            mb: 4,
-            color: "#333",
+            fontSize: { xs: "1.5rem", sm: "2rem", md: "2.3rem" },
+            lineHeight: 1.0,
+            background:
+              "linear-gradient(80deg, rgb(18, 47, 102), rgb(53, 156, 177), rgb(24, 11, 125))",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
           }}
         >
           Product spotlight
@@ -149,7 +153,7 @@ function Products() {
                   >
                     {product.description}
                   </Typography>
-                  <Button sx={{backgroundColor:"" }}>more</Button>
+                  <Button sx={{ backgroundColor: "" }}>more</Button>
                 </CardContent>
               </Card>
             </Grid>
