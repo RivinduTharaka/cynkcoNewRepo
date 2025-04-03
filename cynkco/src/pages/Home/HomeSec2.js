@@ -30,8 +30,8 @@ const HomeSec2 = () => {
               width: "100%",
               maxWidth: 600,
               height: "auto",
-              borderRadius: 2,
-              boxShadow: 2,
+              borderRadius: 1,
+
               justifyContent: "center",
             }}
           />
@@ -41,12 +41,12 @@ const HomeSec2 = () => {
             <Typography
               variant="h2"
               sx={{
-                fontWeight: "bold",
+                fontFamily: "Poppins, sans-serif",
+                fontWeight: 600,
                 mb: 2,
                 fontSize: { xs: "1.5rem", sm: "2rem", md: "2.5rem" },
                 lineHeight: 1.2,
-                background:
-                  "linear-gradient(90deg, rgb(82, 110, 163), rgb(40, 161, 201), rgb(40, 45, 201))",
+                background: 'linear-gradient(45deg, #006400, #0D47A1 )',
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
               }}

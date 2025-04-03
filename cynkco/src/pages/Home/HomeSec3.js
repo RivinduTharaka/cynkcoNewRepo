@@ -23,25 +23,26 @@ const productData = [
 const HomeSec3 = () => {
   const [activeId, setActiveId] = useState(1);
   const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm")); // <600px
+  const isMediumScreen = useMediaQuery(theme.breakpoints.down("md")); // <900px
 
   useEffect(() => {
-    setActiveId(1); // Set initial activeId to 1
+    setActiveId(1); // Initial card selection
   }, []);
 
   return (
-    <Box sx={{ p: 2 }}>
+    <Box sx={{ px: { xs: 2, md: 4 }, py: 6, bgcolor: "#FAFFFC" }}>
       {/* Title */}
       <Typography
         variant="h2"
         sx={{
-          fontWeight: "semibold",
-          mb: 5,
+          fontFamily: "Poppins, sans-serif",
+          fontWeight: 600,
+          mb: 4,
           textAlign: "center",
-          fontSize: { xs: "1.5rem", sm: "2rem", md: "2.3rem" },
-          lineHeight: 1.0,
-          background:
-            "linear-gradient(90deg, rgb(29, 57, 107), rgb(40, 161, 201), rgb(40, 45, 201))",
+          fontSize: { xs: "1.6rem", sm: "2.2rem", md: "2.5rem" },
+          lineHeight: 1.2,
+          background: 'linear-gradient(45deg, #006400, #0D47A1 )',
           WebkitBackgroundClip: "text",
           WebkitTextFillColor: "transparent",
         }}
@@ -52,12 +53,15 @@ const HomeSec3 = () => {
       {/* Description */}
       <Typography
         sx={{
-          textAlign: "justify",
+          fontFamily: "Roboto, sans-serif",
+          fontWeight: 400,
           justifyContent: "center",
-          mb: 4,
-          color: "#777E81",
-          px: { md: 12, xs: 1 },
-          fontSize: { xs: "0.9rem", md: "1.1rem" },
+          textAlign: "justify",
+          mx: "auto",
+          maxWidth: "900px",
+          mb: 5,
+          color: "#555",
+          fontSize: { xs: "0.95rem", md: "1.05rem" },
         }}
       >
         CYNKCO is a leading provider of next-generation smart display solutions,
@@ -66,20 +70,17 @@ const HomeSec3 = () => {
         Designed to empower innovation and seamless collaboration, CYNKCO
         products deliver cutting-edge performance, intuitive user experiences,
         and versatile integration across educational, corporate, and public
-        environments. Transform your communication, engagement, and learning
-        experiences with CYNKCO's smart technology solutions.
+        environments.
       </Typography>
 
-      {/* Mobile Swiper */}
-      {isSmallScreen ? (
+      {/* Swiper for Small & Medium Screens */}
+      {isMediumScreen ? (
         <Swiper
           modules={[Autoplay, Pagination]}
-          slidesPerView={1}
-          loop={true}
-          autoplay={{
-            delay: 2500,
-            disableOnInteraction: false,
-          }}
+          slidesPerView={isSmallScreen ? 1 : 2}
+          spaceBetween={20}
+          loop
+          autoplay={{ delay: 2500, disableOnInteraction: false }}
           pagination={{ clickable: true }}
           style={{ paddingBottom: "30px" }}
         >
@@ -89,7 +90,6 @@ const HomeSec3 = () => {
                 sx={{
                   p: 2,
                   textAlign: "center",
-                  height: "auto",
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
@@ -105,17 +105,25 @@ const HomeSec3 = () => {
                     width: "100%",
                     height: "auto",
                     objectFit: "contain",
-                    mb: 1,
+                    mb: 2,
+                    borderRadius: 2,
                   }}
                 />
-                <Typography fontWeight={600}>{product.title}</Typography>
+                <Typography
+                  fontFamily="Poppins, sans-serif"
+                  fontWeight={600}
+                  color="#007D52"
+                  fontSize="1.1rem"
+                >
+                  {product.title}
+                </Typography>
               </Box>
             </SwiperSlide>
           ))}
         </Swiper>
       ) : (
-        // Desktop Grid with Hover Expand
-        <Grid container sx={{ justifyContent: "center", borderRadius: 2 }}>
+        // Desktop Grid Layout with Hover Effects
+        <Grid container justifyContent="center">
           {productData.map((product) => {
             const isActive = activeId === product.id;
             return (
@@ -127,22 +135,21 @@ const HomeSec3 = () => {
                 md={isActive ? 6 : 3}
                 onMouseEnter={() => setActiveId(product.id)}
                 sx={{
+                  transition: "all 0.5s ease",
                   cursor: "pointer",
-                  transition: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
-                  background: isActive ? "#D1E9F6" : "#ECF9FE",
                 }}
               >
                 <Box
                   sx={{
                     height: 300,
                     borderRadius: 3,
-                    background: isActive ? "#D1E9F6" : "#ECF9FE",
+                    bgcolor: isActive ? "#E0F4E9" : "#F7FDFC",
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "center",
                     justifyContent: "space-between",
                     p: 3,
-                    transition: "all 0.3s ease-in-out",
+                    transition: "all 0.4s ease",
                   }}
                 >
                   <Box
@@ -152,15 +159,19 @@ const HomeSec3 = () => {
                     sx={{
                       maxHeight: isActive ? 220 : 150,
                       objectFit: "contain",
-                      mb: 2,
+                      mb: 1,
                       transition: "all 0.3s ease-in-out",
                     }}
                   />
                   <Typography
-                    variant={isActive ? "h5" : "subtitle1"}
-                    align="center"
+                    variant={isActive ? "h6" : "subtitle1"}
+                    fontFamily="Poppins, sans-serif"
                     fontWeight={600}
-                    sx={{ mb: isActive ? 2 : 0 }}
+                    align="center"
+                    sx={{
+                      color: isActive ? "#007D52" : "#666",
+                      fontSize: isActive ? "1.1rem" : "1rem",
+                    }}
                   >
                     {product.title}
                   </Typography>

@@ -7,8 +7,9 @@ import {
   Paper,
   Alert,
   CircularProgress,
+  Grid,
 } from "@mui/material";
-
+import contactImg from "../../Assets/Home/contact.jpg"
 const Contact = () => {
   const [formStatus, setFormStatus] = useState({
     submitted: false,
@@ -31,11 +32,7 @@ const Contact = () => {
       });
 
       if (response.ok) {
-        setFormStatus({
-          submitted: true,
-          loading: false,
-          error: null,
-        });
+        setFormStatus({ submitted: true, loading: false, error: null });
         form.reset();
       } else {
         throw new Error("Submission failed");
@@ -52,154 +49,245 @@ const Contact = () => {
   return (
     <Box
       sx={{
-        background: "linear-gradient(135deg, #ECF9FE 0%, #E4E9F0 100%)",
+        background: "#F1FFF7", // Soft green background
         py: 6,
-        px: { xs: 3, md: 12 },
+        px: { xs: 2, md: 10 },
+        fontFamily: "Roboto, sans-serif",
+        minHeight: "100vh",
       }}
     >
-      <Paper
-        elevation={2}
-        sx={{
-          maxWidth: 900,
-          mx: "auto",
-          p: { xs: 4, md: 4 },
-          borderRadius: 2,
-        }}
-      >
-        <Typography
-          variant="h3"
-          component="h1"
-          fontWeight={550}
-          textAlign="center"
-          sx={{ mb: 2, color: "#1A1A1A", background:
-            "linear-gradient(90deg, rgb(12, 51, 124), rgb(61, 158, 190), rgb(24, 11, 125))",
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent",}}
-        >
-          Contact Our Team
-        </Typography>
-        <Typography
-          variant="subtitle1"
-          textAlign="center"
-          sx={{ mb: 3, color: "#4A4A4A", maxWidth: 600, mx: "auto" }}
-        >
-          Please complete the form below to discuss your business needs with one of our experts.
-        </Typography>
-
-        {formStatus.submitted && (
-          <Alert severity="success" sx={{ mb: 4 }}>
-            Thank you for your submission. Our team will contact you shortly.
-          </Alert>
-        )}
-        {formStatus.error && (
-          <Alert severity="error" sx={{ mb: 4 }}>
-            {formStatus.error}
-          </Alert>
-        )}
-
-        <form
-          action="https://formsubmit.co/55e5b9f59fce6cd0a042ec9ed8a98709"
-          method="POST"
-          onSubmit={handleSubmit}
-        >
-          <input type="hidden" name="_captcha" value="false" />
-          <input type="hidden" name="_subject" value="New Contact Form Submission" />
-
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
-            {/* First Name and Last Name Row */}
-            <Box sx={{ display: "flex", gap: 3, flexWrap: "wrap" }}>
-              <TextField
-                label="First Name"
-                name="first_name"
-                placeholder="Enter your first name"
-                required
-                variant="outlined"
-                InputLabelProps={{ shrink: true }}
-                sx={{ backgroundColor: "#fff", flex: 1, minWidth: "200px" }}
-              />
-              <TextField
-                label="Last Name"
-                name="last_name"
-                placeholder="Enter your last name"
-                required
-                variant="outlined"
-                InputLabelProps={{ shrink: true }}
-                sx={{ backgroundColor: "#fff", flex: 1, minWidth: "200px" }}
-              />
-            </Box>
-
-            {/* Email and Phone Row */}
-            <Box sx={{ display: "flex", gap: 3, flexWrap: "wrap" }}>
-              <TextField
-                label="Email Address"
-                name="email"
-                type="email"
-                placeholder="e.g., name@company.com"
-                required
-                variant="outlined"
-                InputLabelProps={{ shrink: true }}
-                sx={{ backgroundColor: "#fff", flex: 1, minWidth: "200px" }}
-              />
-              <TextField
-                label="Phone Number"
-                name="phone"
-                placeholder="e.g., +1 (555) 123-4567"
-                required
-                variant="outlined"
-                InputLabelProps={{ shrink: true }}
-                sx={{ backgroundColor: "#fff", flex: 1, minWidth: "200px" }}
-              />
-            </Box>
-
-            {/* Message Row */}
-            <TextField
-              label="Your Message"
-              name="message"
-              placeholder="Please provide details about your inquiry..."
-              fullWidth
-              required
-              multiline
-              rows={6}
-              variant="outlined"
-              InputLabelProps={{ shrink: true }}
-              sx={{ backgroundColor: "#fff" }}
-            />
-
-            {/* Submit Button */}
-            <Box sx={{ textAlign: "center" }}>
-              <Button
-                type="submit"
-                variant="contained"
-                disabled={formStatus.loading}
+      <Grid container spacing={0} sx={{ maxWidth: 1200, mx: "auto" }}>
+        {/* Image Section (Left) */}
+        <Grid item xs={12} sm={12} md={6}>
+          <Box
+            sx={{
+              height: { xs: "300px", md: "100%" },
+              backgroundColor: "#F1FFF7", // Match the page background
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              position: "relative",
+              overflow: "hidden",
+            }}
+          >
+            {/* Placeholder for overlapping images */}
+            <Box
+              sx={{
+                position: "relative",
+                width: "100%",
+                height: "100%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              {/* Placeholder image */}
+              <Box
                 sx={{
-                  mt: 1,
-                  px: 6,
-                  py: 1.5,
-                  fontSize: "1.1rem",
-                  fontWeight: 500,
-                  textTransform: "none",
-                  background: "linear-gradient(90deg,rgb(35, 68, 131) 0%, #2596BE 100%)",
-                  borderRadius: 1,
-                  boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
-                  "&:hover": {
-                    background: "linear-gradient(90deg, #2596BE 0%, rgb(35, 68, 131) 100%)",
-                    boxShadow: "0 4px 8px rgba(0,0,0,0.15)",
-                  },
-                  "&:disabled": {
-                    background: "#B0BEC5",
-                  },
+                  width: { xs: "200px", md: "400px" },
+                  height: { xs: "200px", md: "100%" },
+                  backgroundImage: `url(${contactImg})`, // Replace with actual image URL
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  position: "relative",
+                  zIndex: 1,
                 }}
-              >
-                {formStatus.loading ? (
-                  <CircularProgress size={24} color="inherit" />
-                ) : (
-                  "Submit Inquiry"
-                )}
-              </Button>
+              />
             </Box>
           </Box>
-        </form>
-      </Paper>
+        </Grid>
+
+        {/* Form Section (Right) */}
+        <Grid item xs={12} sm={12} md={6}>
+          <Paper
+            elevation={3}
+            sx={{
+              maxWidth: 900,
+              mx: "auto",
+              p: { xs: 4, md: 5 },
+              // borderRadius: 2,
+              bgcolor: "#FFFFFF",
+            }}
+          >
+            <Typography
+              variant="h3"
+              sx={{
+                fontFamily: "Poppins, sans-serif",
+                fontWeight: 600,
+                textAlign: "center",
+                mb: 2,
+                background: "linear-gradient(45deg, #006400, #0D47A1)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
+            >
+              Contact Our Team
+            </Typography>
+
+            <Typography
+              variant="subtitle1"
+              sx={{
+                textAlign: "center",
+                color: "#757575",
+                mb: 4,
+                maxWidth: 600,
+                mx: "auto",
+                fontFamily: "Roboto, sans-serif",
+              }}
+            >
+              Please complete the form below to discuss your business needs with one of our experts.
+            </Typography>
+
+            {formStatus.submitted && (
+              <Alert severity="success" sx={{ mb: 3 }}>
+                Thank you for your submission. Our team will contact you shortly.
+              </Alert>
+            )}
+            {formStatus.error && (
+              <Alert severity="error" sx={{ mb: 3 }}>
+                {formStatus.error}
+              </Alert>
+            )}
+
+            <form
+              action="https://formsubmit.co/55e5b9f59fce6cd0a042ec9ed8a98709"
+              method="POST"
+              onSubmit={handleSubmit}
+            >
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_subject" value="New Contact Form Submission" />
+
+              <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
+                {/* Name Fields */}
+                <Box sx={{ display: "flex", gap: 3, flexWrap: "wrap" }}>
+                  {["First Name", "Last Name"].map((label, i) => (
+                    <TextField
+                      key={label}
+                      name={label.toLowerCase().replace(" ", "_")}
+                      label={label}
+                      required
+                      fullWidth
+                      placeholder={`Enter your ${label.toLowerCase()}`}
+                      InputLabelProps={{ shrink: true }}
+                      sx={{
+                        flex: 1,
+                        minWidth: "200px",
+                        "& .MuiOutlinedInput-root": {
+                          "& fieldset": { borderColor: "#24AC4C" },
+                          "&:hover fieldset": { borderColor: "#28C96B" },
+                          "&.Mui-focused fieldset": { borderColor: "#28C96B" },
+                        },
+                        "& .MuiInputLabel-root": {
+                          fontFamily: "Roboto, sans-serif",
+                          color: "#757575",
+                        },
+                        "& .MuiInputLabel-root.Mui-focused": {
+                          color: "#28C96B",
+                        },
+                      }}
+                    />
+                  ))}
+                </Box>
+
+                {/* Email and Phone */}
+                <Box sx={{ display: "flex", gap: 3, flexWrap: "wrap" }}>
+                  <TextField
+                    name="email"
+                    label="Email Address"
+                    type="email"
+                    required
+                    fullWidth
+                    placeholder="e.g. name@company.com"
+                    InputLabelProps={{ shrink: true }}
+                    sx={{
+                      flex: 1,
+                      minWidth: "200px",
+                      "& .MuiOutlinedInput-root": {
+                        "& fieldset": { borderColor: "#24AC4C" },
+                        "&:hover fieldset": { borderColor: "#28C96B" },
+                        "&.Mui-focused fieldset": { borderColor: "#28C96B" },
+                      },
+                      "& .MuiInputLabel-root": { color: "#757575" },
+                      "& .MuiInputLabel-root.Mui-focused": { color: "#28C96B" },
+                    }}
+                  />
+                  <TextField
+                    name="phone"
+                    label="Phone Number"
+                    required
+                    fullWidth
+                    placeholder="e.g. +1 (555) 123-4567"
+                    InputLabelProps={{ shrink: true }}
+                    sx={{
+                      flex: 1,
+                      minWidth: "200px",
+                      "& .MuiOutlinedInput-root": {
+                        "& fieldset": { borderColor: "#24AC4C" },
+                        "&:hover fieldset": { borderColor: "#28C96B" },
+                        "&.Mui-focused fieldset": { borderColor: "#28C96B" },
+                      },
+                      "& .MuiInputLabel-root": { color: "#757575" },
+                      "& .MuiInputLabel-root.Mui-focused": { color: "#28C96B" },
+                    }}
+                  />
+                </Box>
+
+                {/* Message */}
+                <TextField
+                  name="message"
+                  label="Your Message"
+                  multiline
+                  rows={6}
+                  fullWidth
+                  required
+                  placeholder="Let us know how we can help..."
+                  InputLabelProps={{ shrink: true }}
+                  sx={{
+                    "& .MuiOutlinedInput-root": {
+                      "& fieldset": { borderColor: "#24AC4C" },
+                      "&:hover fieldset": { borderColor: "#28C96B" },
+                      "&.Mui-focused fieldset": { borderColor: "#28C96B" },
+                    },
+                    "& .MuiInputLabel-root": { color: "#757575" },
+                    "& .MuiInputLabel-root.Mui-focused": { color: "#28C96B" },
+                  }}
+                />
+
+                {/* Submit */}
+                <Box sx={{ textAlign: "center", mt: 2 }}>
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    disabled={formStatus.loading}
+                    sx={{
+                      fontFamily: "Poppins, sans-serif",
+                      fontWeight: 500,
+                      fontSize: "1rem",
+                      px: 6,
+                      py: 1.5,
+                      borderRadius: 2,
+                      background: "linear-gradient(90deg, #006400, #0D47A1)",
+                      textTransform: "none",
+                      "&:hover": {
+                        background: "linear-gradient(90deg, #0D47A1, #006400)",
+                      },
+                      "&:disabled": {
+                        background: "#B0BEC5",
+                      },
+                    }}
+                  >
+                    {formStatus.loading ? (
+                      <CircularProgress size={24} color="inherit" />
+                    ) : (
+                      "Submit Inquiry"
+                    )}
+                  </Button>
+                </Box>
+              </Box>
+            </form>
+          </Paper>
+        </Grid>
+      </Grid>
     </Box>
   );
 };

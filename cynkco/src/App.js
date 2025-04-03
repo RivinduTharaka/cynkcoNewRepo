@@ -5,8 +5,12 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home/Home";
 import Support from "./pages/Support/Support";
 import Partner from "./pages/Partner/Partner";
-import Products from "./pages/Products/Catergory/Catergory";
+// import Products from "./pages/Products/Catergory/Catergory";
 import SubProducts from "./pages/Products/SubProducts/SubProducts";
+
+import Products from "./pages/Products/ProductsCynko/Products"
+import StandsPage from "./pages/Products/ProductsCynko/Stands";
+import ScreensPage from "./pages/Products/ProductsCynko/Screens";
 
 function App() {
   return (
@@ -18,6 +22,8 @@ function App() {
         <Route path="/partner" element={<Partner />} />
         <Route path="/products" element={<Products />} />
         <Route path="/products/:categorySlug" element={<SubProducts />} />
+        <Route path="/products/smartscreen-stands" element={<StandsPage />} />
+        <Route path="/products/smart-screens" element={<ScreensPage />} />
       </Routes>
       <Footer />
     </Router>

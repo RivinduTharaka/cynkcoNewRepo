@@ -12,7 +12,6 @@ import medicalImg from "../../Assets/Home/hospital.jpg";
 import meetingImg from "../../Assets/Home/meeting.jpg";
 import educationImg from "../../Assets/Home/classroom.jpeg";
 import retailImg from "../../Assets/Home/retail.jpg";
-import logisticsImg from "../../Assets/Home/classroom.jpeg";
 
 const industryData = [
   {
@@ -45,22 +44,21 @@ const industryData = [
     description:
       "Digital signage and smart displays attract customers and provide dynamic product experiences in retail.",
   },
- 
 ];
 
 const HomeSec4 = () => {
   return (
-    <Box sx={{ mt: 10, mb:4 }}>
+    <Box sx={{ mt: 10, mb: 4 }}>
       <Typography
         variant="h2"
         sx={{
-          fontWeight: "semibold",
+          fontFamily: "Poppins, sans-serif",
+          fontWeight: 600,
           mb: 5,
           textAlign: "center",
           fontSize: { xs: "1.5rem", sm: "2rem", md: "2.3rem" },
           lineHeight: 1.0,
-          background:
-            "linear-gradient(90deg, rgb(29, 57, 107), rgb(56, 203, 211), rgb(40, 45, 201))",
+          background: 'linear-gradient(45deg, #006400, #0D47A1 )',
           WebkitBackgroundClip: "text",
           WebkitTextFillColor: "transparent",
         }}
@@ -68,18 +66,21 @@ const HomeSec4 = () => {
         One Platform. Endless Possibilities.
       </Typography>
 
-      <Box sx={{ background: "#ECF9FE", py: 6, px: 10, my: 4 }}>
+      <Box sx={{ background: "#F1FFF7", py: 6, px: { xs: 2, md: 10 }, my: 4 }}>
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
-          spaceBetween={8} // Reduced space
+          spaceBetween={12}
           slidesPerView={1}
           loop={true}
           pagination={{ clickable: true }}
           autoplay={{ delay: 3600 }}
           breakpoints={{
+            0: { slidesPerView: 1 },
             600: { slidesPerView: 1 },
             768: { slidesPerView: 2 },
             1024: { slidesPerView: 3 },
+            1280: { slidesPerView: 4 }, // Large screens (≥1280px)
+            1536: { slidesPerView: 4 }, // XL screens
           }}
           style={{ paddingBottom: "50px", paddingTop: "10px" }}
         >
@@ -92,8 +93,9 @@ const HomeSec4 = () => {
                   overflow: "hidden",
                   mx: "auto",
                   maxWidth: 360,
-                  height: 400, // ✅ Fixed height for card
-                  boxShadow: 1,
+                  height: 400,
+                  border: 1,
+                  borderColor: "#24ac4c",
                   display: "flex",
                   flexDirection: "column",
                 }}
@@ -111,8 +113,9 @@ const HomeSec4 = () => {
                 <Box sx={{ p: 2, overflow: "hidden", flexGrow: 1 }}>
                   <Typography
                     variant="h6"
-                    fontWeight={700}
                     sx={{
+                      fontFamily: "Poppins, sans-serif",
+                      fontWeight: 700,
                       mb: 1,
                       fontSize: "1.1rem",
                       whiteSpace: "nowrap",
@@ -126,6 +129,8 @@ const HomeSec4 = () => {
                     variant="body2"
                     color="text.secondary"
                     sx={{
+                      fontFamily: "Roboto, sans-serif",
+                      fontWeight: 400,
                       fontSize: "0.92rem",
                       lineHeight: 1.5,
                       maxHeight: "4.5rem",

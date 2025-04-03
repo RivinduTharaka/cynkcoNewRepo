@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Box,
   Container,
@@ -7,13 +7,10 @@ import {
   Card,
   CardMedia,
   CardContent,
-  Checkbox,
-  FormControlLabel,
   Button,
 } from "@mui/material";
 import { Link } from "react-router-dom";
 
-// Placeholder images (replace with real product images if available)
 const productImages = [
   "https://via.placeholder.com/300x200.png?text=Product+1",
   "https://via.placeholder.com/300x200.png?text=Product+2",
@@ -21,8 +18,6 @@ const productImages = [
 ];
 
 function Products() {
-  const [selectedProducts, setSelectedProducts] = useState([]);
-
   const products = [
     {
       name: "CYNKCO CLASSMATE",
@@ -47,35 +42,26 @@ function Products() {
     },
   ];
 
-  const handleCompareChange = (productName) => {
-    setSelectedProducts((prev) =>
-      prev.includes(productName)
-        ? prev.filter((name) => name !== productName)
-        : [...prev, productName]
-    );
-  };
-
   return (
-    <Box sx={{ py: 6 }}>
+    <Box sx={{ py:2 }}>
       <Container>
         <Typography
           variant="h2"
           sx={{
-            fontWeight: "semibold",
+            fontFamily: "Poppins, sans-serif",
+            fontWeight: 600,
             mb: 5,
             textAlign: "center",
-            fontSize: { xs: "1.5rem", sm: "2rem", md: "2.3rem" },
-            lineHeight: 1.0,
-            background:
-              "linear-gradient(80deg, rgb(18, 47, 102), rgb(53, 156, 177), rgb(24, 11, 125))",
+            fontSize: { xs: "1.5rem", sm: "2rem", md: "2.4rem" },
+            lineHeight: 1.3,
+            background: 'linear-gradient(45deg, #006400, #0D47A1 )',
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
           }}
         >
-          Product spotlight
+          Product Spotlight
         </Typography>
 
-        {/* Products Grid */}
         <Grid container spacing={3} justifyContent="center">
           {products.map((product, index) => (
             <Grid item xs={12} sm={6} md={3} key={index}>
@@ -87,30 +73,31 @@ function Products() {
                   overflow: "hidden",
                   width: 300,
                   height: 400,
+                  bgcolor: "#FFFFFF",
                 }}
               >
-                {/* "NEW" Badge */}
+                {/* NEW badge */}
                 {product.isNew && (
                   <Box
                     sx={{
                       position: "absolute",
                       top: 8,
                       left: 8,
-                      bgcolor: "#2596be",
-                      color: "white",
+                      bgcolor: "#24AC4C",
+                      color: "#FFFFFF",
                       px: 1.2,
                       py: 0.4,
                       fontSize: "0.75rem",
                       fontWeight: "bold",
                       borderRadius: "4px",
                       zIndex: 2,
+                      fontFamily: "Roboto, sans-serif",
                     }}
                   >
                     NEW
                   </Box>
                 )}
 
-                {/* Product Image */}
                 <CardMedia
                   component="img"
                   height="200"
@@ -126,13 +113,13 @@ function Products() {
                   }}
                 />
 
-                {/* Product Content */}
                 <CardContent sx={{ textAlign: "left" }}>
                   <Typography
                     variant="subtitle1"
                     sx={{
-                      fontWeight: "bold",
-                      color: "#333",
+                      fontFamily: "Poppins, sans-serif",
+                      fontWeight: 600,
+                      color: "#1D6B44",
                       mb: 1,
                       overflow: "hidden",
                       textOverflow: "ellipsis",
@@ -144,7 +131,8 @@ function Products() {
                   <Typography
                     variant="body2"
                     sx={{
-                      color: "#666",
+                      fontFamily: "Roboto, sans-serif",
+                      color: "#757575",
                       mb: 2,
                       overflow: "hidden",
                       textOverflow: "ellipsis",
@@ -153,23 +141,37 @@ function Products() {
                   >
                     {product.description}
                   </Typography>
-                  <Button sx={{ backgroundColor: "" }}>more</Button>
+                  <Button
+                    sx={{
+                      backgroundColor: "#24AC4C",
+                      color: "#FFFFFF",
+                      textTransform: "none",
+                      fontFamily: "Roboto, sans-serif",
+                      fontWeight: 500,
+                      "&:hover": {
+                        backgroundColor: "#9DD338",
+                      },
+                    }}
+                  >
+                    More
+                  </Button>
                 </CardContent>
               </Card>
             </Grid>
           ))}
         </Grid>
 
-        {/* View All Link */}
+        {/* View All Button */}
         <Box sx={{ textAlign: "right", mt: 4 }}>
           <Button
             component={Link}
             to="/products"
             sx={{
-              color: "#1E3A8A",
+              fontFamily: "Poppins, sans-serif",
+              color: "#1D6B44",
               textTransform: "none",
-              fontWeight: "bold",
-              "&:hover": { color: "#60A5FA" },
+              fontWeight: 600,
+              "&:hover": { color: "#28C96B" },
             }}
             endIcon={<Box component="span">→</Box>}
           >
